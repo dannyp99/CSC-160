@@ -15,9 +15,8 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         nm = GetComponent<NavMeshAgent>();
-        StartCoroutine(Think());
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        dist = Vector3.Distance(target.position, transform.position);
+        StartCoroutine(Think());
     }
 
     // Update is called once per frame
