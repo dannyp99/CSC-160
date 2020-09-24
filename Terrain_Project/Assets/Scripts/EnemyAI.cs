@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,9 +10,12 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     public enum AIState { idle,chasing };
     public AIState aiState = AIState.idle;
+
+    private Animator monster;
     // Start is called before the first frame update
     void Start()
     {
+        monster = GetComponentInChildren<Animator>();
         nm = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(Think());
@@ -36,11 +38,13 @@ public class EnemyAI : MonoBehaviour
                     if (dist <= trigger)
                         aiState = AIState.chasing;
                     nm.SetDestination(transform.position);
+                    monster.SetBool("Trigger", false);
                     break;
                 case AIState.chasing:
                     if (dist > trigger)
                         aiState = AIState.idle;
                     nm.SetDestination(target.position);
+                    monster.SetBool("Trigger", true);
                     break;
                 default:
                     break;
