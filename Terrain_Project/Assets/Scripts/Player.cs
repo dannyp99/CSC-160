@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
     public float health;
     public HealthBar healthBar;
     public int regen = 1;
+    Coroutine stop;
+    Coroutine heal;
     // Start is called before the first frame update
     void Start()
     {
      health = maxHealth;
      healthBar.SetMaxHealth(maxHealth);
-     StartCoroutine(Heal());  
+     heal = StartCoroutine(Heal());  
     }
 
     // Update is called once per frame
@@ -22,22 +24,33 @@ public class Player : MonoBehaviour
                 
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
+        if(stop != null) {StopCoroutine(stop);}
+        stop = StartCoroutine(StopHeal());
         health -= damage;
         healthBar.SetHealth(health);
+
     }
 
     IEnumerator Heal()
     {
-        while(true)
+        while(health < maxHealth)
         {
-            if (health < maxHealth)
-            {
-                health += regen;
-                healthBar.SetHealth(health);
-            }
-        yield return new WaitForSeconds(1f);
+            health += regen;
+            healthBar.SetHealth(health);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    IEnumerator StopHeal()
+    {   
+        Debug.Log("STOP!");
+        if(heal != null) {StopCoroutine(heal);}
+        yield return new WaitForSeconds(5f);
+        if(heal == null)
+        {
+            Debug.Log("Start");
+            heal = StartCoroutine(Heal());
         }
     }
 }
