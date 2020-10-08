@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,15 +6,18 @@ public class Player : MonoBehaviour
     public float maxHealth = 100.0f;
     public float health;
     public HealthBar healthBar;
+    public GameManager manager;
+    private GameObject body;
     public int regen = 1;
     Coroutine stop;
     Coroutine heal;
     // Start is called before the first frame update
     void Start()
     {
-     health = maxHealth;
-     healthBar.SetMaxHealth(maxHealth);
-     heal = StartCoroutine(Heal());  
+        body = GameObject.FindGameObjectWithTag("Body");
+        health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        heal = StartCoroutine(Heal());  
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
         stop = StartCoroutine(StopHeal());
         health -= damage;
         healthBar.SetHealth(health);
+        if(health <= 0f) {manager.GameOver();}
 
     }
 
