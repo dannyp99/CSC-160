@@ -42,6 +42,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
 
+		public void Aim(bool isAiming)
+		{
+			m_Animator.SetBool("aiming", isAiming);
+		}
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{

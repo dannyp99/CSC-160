@@ -4,7 +4,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float damage = 10f;
-    public int effect = 5;
     public float cooldown = 1f;
     private float nextAttack = 0f;
     private float health = 10f;
@@ -28,18 +27,4 @@ public class Enemy : MonoBehaviour
             nextAttack = Time.time + cooldown;
         }
     }
-    // void OnTriggerExit(Collider other)
-    // {
-    //     int i = 0;
-    //     while(i < effect)
-    //     {
-    //         if(Time.time > nextAttack)
-    //         {
-    //             i++;
-    //             other.gameObject.GetComponent<Player>().TakeDamage(1f);
-    //             nextAttack = Time.time + 0.5f;
-    //         }
-    //     }
-    //     i = 0;
-    // }
 }
