@@ -1,33 +1,51 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
     public GameObject theEnemy;
     private Transform player;
-    public int enemyCount;
-    public int limit = 10;
+    public int enemyCount = 0;                                                              
+    private int limit = 10;
+    private int kills = 0;
+    private Coroutine generate;
+    public static EnemyGenerator Instance{ get; private set; }
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(EnemyDrop());
     }
+
+    public void EnemyDeath()
+    {
+        kills++;
+        enemyCount--;
+        if(kills % 5 == 0 && kills > 0)
+        {
+            limit++;
+        }
+    }
     IEnumerator EnemyDrop()
     {
-        float lowerx = player.position.x;
-        float lowery = player.position.y;
-        float lowerz = player.position.z;
-        while(enemyCount < limit)
+        while(true)
         {
+            if(enemyCount < limit)
+            {
+                float xPos = Random.Range(player.position.x, player.position.x + 10.0f);
+                float zPos = Random.Range(player.position.z, player.position.z + 10.0f);
+                Instantiate(theEnemy, new Vector3(xPos,player.position.y + 5,zPos), Quaternion.identity);
+                enemyCount++;
+            }
+            if (kills % 25 == 0 && kills > 0)
+            {
+                yield return new WaitForSeconds(60f);
             
-            float xPos = Random.Range(player.position.x, player.position.x + 10.0f);
-            float zPos = Random.Range(player.position.z, player.position.z + 10.0f);
-            Instantiate(theEnemy, new Vector3(xPos,player.position.y + 5,zPos), Quaternion.identity);
-            yield return new WaitForSeconds(1f);
-            enemyCount++;
-        }   
+            }else{
+                yield return new WaitForSeconds(1f);
+            }
+        }
     }
     
 }
