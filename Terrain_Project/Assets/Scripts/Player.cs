@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private int delay = 5;
     [SerializeField]
     private Vector3 offset;
+    private int armor = 0;
     private float damage = 10f;
     private float lastDamageTime = -1.0f;
     private float fireRate = 4;
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         delay = 5;
-        health -= damage;
+        health -= (damage - armor);
         healthBar.SetHealth(health);
         lastDamageTime = Time.time;
         if(health <= 0f) {manager.GameOver();}
@@ -93,5 +94,10 @@ public class Player : MonoBehaviour
             GameObject impactParticle = Instantiate(impactEffect, aimTarget, Quaternion.LookRotation(hitInfo.normal));
             Destroy(impactParticle, 2f);
         }
+    }
+    public void UpdateHealth(int upgrade)
+    {
+        maxHealth += upgrade;
+        healthBar.SetMaxHealth(maxHealth);
     }
 }

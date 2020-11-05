@@ -8,11 +8,13 @@ public class EnemyGenerator : MonoBehaviour
     public int enemyCount = 0;                                                              
     private int limit = 10;
     private int kills = 0;
+    public static int Points{ get; set; }
     private Coroutine generate;
     public static EnemyGenerator Instance{ get; private set; }
     // Start is called before the first frame update
     void Start()
     {
+        Points = 2;
         Instance = this;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(EnemyDrop());
@@ -40,6 +42,7 @@ public class EnemyGenerator : MonoBehaviour
             }
             if (kills % 25 == 0 && kills > 0)
             {
+                Points+=2;
                 yield return new WaitForSeconds(60f);
             
             }else{
