@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         UnityEngine.Debug.DrawRay(playerPos, dir, Color.yellow, .5f);
         if(Physics.Raycast(new Ray(playerPos, dir), out RaycastHit hitInfo, dir.magnitude))
         {
-            Debug.Log(hitInfo.transform.name);
+            //Debug.Log(hitInfo.transform.name);
             Enemy target = hitInfo.transform.GetComponent<Enemy>();
             if(target != null)
             {
@@ -99,5 +99,21 @@ public class Player : MonoBehaviour
     {
         maxHealth += upgrade;
         healthBar.SetMaxHealth(maxHealth);
+    }
+    public void UpdateRegen(int upgrade)
+    {
+        regen += upgrade;
+    }
+    public void UpdateArmor(int upgrade)
+    {
+        armor += upgrade;
+    }
+    public void UpdateFireSpeed(int upgrade)
+    {
+        fireRate += upgrade;
+    }
+    public void UpdateDamage(int upgrade)
+    {
+        damage +=  upgrade;
     }
 }

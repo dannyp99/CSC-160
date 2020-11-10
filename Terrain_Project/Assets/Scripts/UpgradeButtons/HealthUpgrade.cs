@@ -5,13 +5,11 @@ public class HealthUpgrade : MonoBehaviour
     public void Upgrade()
     {
         Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        int points = EnemyGenerator.Points;
-        if(points > 0 && player != null)
+        if(EnemyGenerator.Points > 0 && player != null)
         {
-            Debug.Log(points);
+            Debug.Log(EnemyGenerator.Points);
             player.UpdateHealth(5);
-            points--;
+            EnemyGenerator.Points--;
         }
-        EnemyGenerator.Points = points;
     }
 }
