@@ -10,6 +10,7 @@ public class HealthUpgrade : MonoBehaviour
             Debug.Log(EnemyGenerator.Points);
             player.UpdateHealth(5);
             EnemyGenerator.Points--;
+            EnemyGenerator.Instance.UpdatePoints();
         }
     }
 }

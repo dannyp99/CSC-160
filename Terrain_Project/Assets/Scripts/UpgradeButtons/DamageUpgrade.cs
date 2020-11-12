@@ -10,6 +10,7 @@ public class DamageUpgrade : MonoBehaviour
             Debug.Log(EnemyGenerator.Points);
             player.UpdateDamage(3);
             EnemyGenerator.Points--;
+            EnemyGenerator.Instance.UpdatePoints();
         }
    }
 }

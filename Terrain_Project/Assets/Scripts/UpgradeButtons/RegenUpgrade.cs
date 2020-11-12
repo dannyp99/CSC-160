@@ -10,6 +10,7 @@ public class RegenUpgrade : MonoBehaviour
             Debug.Log(EnemyGenerator.Points);
             player.UpdateRegen(1);
             EnemyGenerator.Points--;
+            EnemyGenerator.Instance.UpdatePoints();
         }
    }
 }

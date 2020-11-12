@@ -10,6 +10,7 @@ public class ArmorUpgrade : MonoBehaviour
             Debug.Log(EnemyGenerator.Points);
             player.UpdateArmor(2);
             EnemyGenerator.Points--;
+            EnemyGenerator.Instance.UpdatePoints();
         }
    }
 }

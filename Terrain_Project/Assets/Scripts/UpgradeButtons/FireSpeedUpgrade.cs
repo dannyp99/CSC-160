@@ -9,6 +9,7 @@ public class FireSpeedUpgrade : MonoBehaviour
             Debug.Log(EnemyGenerator.Points);
             player.UpdateFireSpeed(2);
             EnemyGenerator.Points--;
+            EnemyGenerator.Instance.UpdatePoints();
         }
    }
 }
