@@ -6,11 +6,17 @@ public class Enemy : MonoBehaviour
     public float damage = 10f;
     public float cooldown = 1f;
     private float nextAttack = 0f;
-    private float health = 5f;
+    private float health = 10f;
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    public void Upgrade(float multiplier)
+    {
+        damage *= multiplier;
+        health *= multiplier;
     }
 
     void OnTriggerStay(Collider other)

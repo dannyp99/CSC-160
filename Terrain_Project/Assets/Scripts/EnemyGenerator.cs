@@ -11,6 +11,7 @@ public class EnemyGenerator : MonoBehaviour
     private int limit = 10;
     private int kills = 1;
     private int killcounter = 0;
+    private float mult = 1.0f;
     public PointsBar pointsBar;
     public static int Points{ get; set; }
     private Coroutine generate;
@@ -49,11 +50,20 @@ public class EnemyGenerator : MonoBehaviour
             {
                 float xPos = Random.Range(player.position.x, player.position.x + 10.0f);
                 float zPos = Random.Range(player.position.z, player.position.z + 10.0f);
-                Instantiate(theEnemy, new Vector3(xPos,player.position.y + 5,zPos), Quaternion.identity);
-                enemyCount++;
+                GameObject newEnemy = Instantiate(theEnemy, new Vector3(xPos,player.position.y + 5,zPos), Quaternion.identity);
+                if(newEnemy != null)
+                {
+                    enemyCount++;
+                    Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+                    if(enemyScript != null)
+                    {
+                        enemyScript.Upgrade(mult);
+                    }
+                }
             }
             if (kills % 25 == 0 && enemyCount == 0)
             {
+                mult += 0.5f;
                 Points+=2;
                 pointsBar.AddPoints();
                 kills++;
