@@ -11,7 +11,11 @@ public class EnemyGenerator : MonoBehaviour
     private int limit = 10;
     private int kills = 1;
     private int killcounter = 0;
+    private int nextLevel = 25;
+    private int pointsCap = 2;
+    private int level = 1;
     private float mult = 1.0f;
+    private float multiRate = 0.5f;
     public PointsBar pointsBar;
     public static int Points{ get; set; }
     private Coroutine generate;
@@ -42,11 +46,18 @@ public class EnemyGenerator : MonoBehaviour
     {
         pointsBar.SetPoints(Points);
     }
+
+    void UpdateLevel()
+    {
+        pointsCap++;
+        nextLevel += 10;
+        multiRate += 0.2f;
+    }
     IEnumerator EnemyDrop()
     {
         while(true)
         {
-            if(enemyCount < limit && (enemyCount+kills) % 25 != 0)
+            if(enemyCount < limit && (enemyCount+kills) % nextLevel != 0)
             {
                 float xPos = Random.Range(player.position.x, player.position.x + 10.0f);
                 float zPos = Random.Range(player.position.z, player.position.z + 10.0f);
@@ -61,10 +72,12 @@ public class EnemyGenerator : MonoBehaviour
                     }
                 }
             }
-            if (kills % 25 == 0 && enemyCount == 0)
+            if (kills % nextLevel == 0 && enemyCount == 0)
             {
-                mult += 0.5f;
-                Points+=2;
+                level++;
+                if(level % 5 == 0) { UpdateLevel(); }
+                mult += multiRate;
+                Points+=pointsCap;
                 pointsBar.AddPoints();
                 kills++;
                 yield return new WaitForSeconds(60f);

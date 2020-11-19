@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class Player : MonoBehaviour
 {
     [SerializeField]
@@ -18,7 +17,12 @@ public class Player : MonoBehaviour
     private float lastDamageTime = -1.0f;
     private float fireRate = 4;
     private float nextTimeToFire = 1f;
-    public float health;
+    private float health;
+    public int Armor {get {return armor;}}
+    public float Damage {get {return damage;}}
+    public float Health {get {return maxHealth;}}
+    public int Regen {get {return regen;}}
+    public float FireRate {get {return (1f + (1f/fireRate));}}
     public HealthBar healthBar;
     public GameManager manager;
     private GameObject body;

@@ -5549,7 +5549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &454556713
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6201,6 +6201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8d955c5d196644bbee445ad40d65de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plyrFireRate: {fileID: 653859609}
 --- !u!1 &787430095
 GameObject:
   m_ObjectHideFlags: 0
@@ -7025,6 +7026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e73a59392fd71141bb77ab1e3d71795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plyrArmor: {fileID: 439703585}
 --- !u!1 &1246630774 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aaef9cc952a31634c92c39d01f869f09, type: 3}
@@ -7629,6 +7631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1d10362debba745ab1df6c8de1c4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plyrRegen: {fileID: 1821155406}
 --- !u!1 &1370863099
 GameObject:
   m_ObjectHideFlags: 0
@@ -7906,6 +7909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8a37b2e5acb51438d14edc6354b1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plyrHealth: {fileID: 337017432}
 --- !u!1 &1587328239
 GameObject:
   m_ObjectHideFlags: 0
@@ -13698,6 +13702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701a376dd610f044091adc2af96abf0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plyrDamage: {fileID: 670606897}
 --- !u!1 &1923008425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: 87fc61babfe73254cbb83eab65d72ac4, type: 3}
@@ -13786,7 +13791,6 @@ MonoBehaviour:
   regen: 1
   delay: 5
   offset: {x: 0, y: -18, z: 0}
-  health: 0
   healthBar: {fileID: 59068803}
   manager: {fileID: 539856627}
   leftMuzzle: {fileID: 1799479997}
